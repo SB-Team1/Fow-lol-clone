@@ -1,0 +1,7 @@
+feat: 유저 전적 검색 개발
+
+--- content ---
+riot api 에 요청을 보내 응답 데이터를 DB 에 저장
+
+--- issue ---
+close: #12

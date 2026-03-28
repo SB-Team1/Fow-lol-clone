@@ -1,0 +1,56 @@
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '3.5.10'
+  id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.fow.pentakode'
+version = '1.0-SNAPSHOT'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation platform('org.junit:junit-bom:5.10.0')
+  testImplementation 'org.junit.jupiter:junit-jupiter'
+  implementation platform('org.springdoc:springdoc-openapi:2.8.5')
+
+  implementation('org.springframework.boot:spring-boot-starter-web')
+  implementation("org.springframework.boot:spring-boot-starter-actuator")
+  implementation('org.springframework.boot:spring-boot-starter-validation')
+  implementation('org.springdoc:springdoc-openapi-starter-webmvc-ui')
+  implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+  developmentOnly('org.springframework.boot:spring-boot-devtools')
+  runtimeOnly('org.postgresql:postgresql:42.7.7')
+
+  compileOnly("org.projectlombok:lombok:1.18.42")
+  annotationProcessor("org.projectlombok:lombok:1.18.42")
+
+  implementation('org.mapstruct:mapstruct:1.6.3')
+  annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+  annotationProcessor('org.mapstruct:mapstruct-processor:1.6.3')
+
+  implementation 'io.github.openfeign.querydsl:querydsl-jpa:7.1'
+  annotationProcessor 'io.github.openfeign.querydsl:querydsl-apt:7.1:jpa'
+  annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+  annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+
+  testCompileOnly("org.projectlombok:lombok:1.18.42")
+  testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+}
+
+test {
+  useJUnitPlatform()
+}
+
