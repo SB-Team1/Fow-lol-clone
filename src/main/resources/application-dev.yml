@@ -1,0 +1,43 @@
+spring:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database: PostgreSQL
+    defer-datasource-initialization: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc.batch_size: 100
+        order_inserts: true
+        order_updates: true
+
+logging:
+  level:
+    root: info
+    com.sprint.mission.discodeit: debug
+    org.hibernate:
+      SQL: debug
+      type.descriptor.sql.BasicBinder: trace
+
+  file:
+    name: .logs/pentakode.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.log
+      max-file-size: 10MB
+      clean-history-on-start: true
+      max-history: 14
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %clr(%-5level) [%logger{36}.%M] - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
